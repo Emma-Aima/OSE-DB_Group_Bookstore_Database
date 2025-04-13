@@ -3,7 +3,6 @@
 -- Book Table */
 
 --  Disable foreign key checks to allow table creation in any order
-SET FOREIGN_KEY_CHECKS = 0;
 CREATE TABLE Book (
     book_id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(100) NOT NULL,
@@ -18,21 +17,27 @@ CREATE TABLE Book (
 
 -- Insert 15 Sample Books
 INSERT INTO Book (title, isbn, language_id, publisher_id, price, stock_quantity) VALUES
-('To Kill a Mockingbird', '978-0061120084', 1, 1, 12.99, 25),
-('1984', '978-0451524935', 1, 2, 9.99, 18),
-('The Great Gatsby', '978-0743273565', 1, 3, 10.50, 15),
-('One Hundred Years of Solitude', '978-0060883287', 2, 4, 14.95, 12),
-('The Alchemist', '978-0062315007', 1, 5, 11.25, 30),
-('Pride and Prejudice', '978-1503290563', 1, 6, 8.75, 22),
-('The Hobbit', '978-0547928227', 1, 7, 15.99, 20),
-('Crime and Punishment', '978-0143107637', 3, 8, 13.45, 10),
-('The Catcher in the Rye', '978-0316769488', 1, 9, 11.99, 17),
-('Harry Potter and the Sorcerer''s Stone', '978-0439708180', 1, 10, 16.50, 35);
-('The Lord of the Rings', '978-0544003415', 1, 7, 22.99, 28),
-('The Da Vinci Code', '978-0307474278', 1, 1, 14.50, 20),
-('The Hunger Games', '978-0439023481', 1, 10, 12.99, 32),
-('Love in the Time of Cholera', '978-0307387264', 2, 4, 15.75, 14),
-('Anna Karenina', '978-0143035008', 3, 8, 18.25, 9);
+('To Kill a Mockingbird', '978-0061120084', 1, 1, 22.99, 25),
+('1984', '978-0451524935', 1, 2, 19.99, 18),
+('The Great Gatsby', '978-0743273565', 1, 3, 20.50, 15),
+('One Hundred Years of Solitude', '978-0060883287', 2, 4, 24.95, 12),
+('The Alchemist', '978-0062315007', 1, 5, 21.25, 30),
+('Pride and Prejudice', '978-1503290563', 1, 6, 28.75, 22),
+('The Hobbit', '978-0547928227', 1, 7, 25.99, 20),
+('Crime and Punishment', '978-0143107637', 3, 8, 23.45, 10),
+('The Catcher in the Rye', '978-0316769488', 1, 9, 21.99, 17),
+('Harry Potter and the Sorcerer''s Stone', '978-0439708180', 1, 10, 26.50, 35);
+('The Lord of the Rings', '978-0544003415', 1, 7, 32.99, 28),
+('The Da Vinci Code', '978-0307474278', 1, 1, 18.50, 20),
+('The Hunger Games', '978-0439023481', 1, 10, 19.99, 32),
+('Love in the Time of Cholera', '978-0307387264', 2, 4, 25.75, 14),
+('Anna Karenina', '978-0143035008', 3, 8, 28.25, 9);
+
+
+/* The Price list is only covering paperback type of books, not hardcover or special editions. */
+-- Hardcovers and special edition books are much more higher in price than 
+-- the paperbacks.
+
 
 /*-- Book Language Table*/
 CREATE TABLE Book_language (
@@ -43,9 +48,9 @@ CREATE TABLE Book_language (
 /* -- Insert 3 Sample Languages
 -- Note: The language_id is auto-incremented, so we don't need to specify it in the insert statement. */
 INSERT INTO Book_language (language_name) VALUES
-(1, 'English'),
-(2, 'Spanish'), /* "One Hundred Years of Solitude" (Gabriel García Márquez), "Love in the Time of Cholera" (Gabriel García Márquez) */
-(3, 'Russian'); /* "Crime and Punishment" (Fyodor Dostoevsky), Anna Karenina (Leo Tolstoy) */
+('English'),
+('Spanish'), /* "One Hundred Years of Solitude" (Gabriel García Márquez), "Love in the Time of Cholera" (Gabriel García Márquez) */
+('Russian'); /* "Crime and Punishment" (Fyodor Dostoevsky), Anna Karenina (Leo Tolstoy) */
 
 /*-- Publisher Table*/
 CREATE TABLE Publisher (
@@ -56,22 +61,17 @@ CREATE TABLE Publisher (
 );
 
 /* Insert Publisher Data For All 15 Books "*/
-INSERT INTO Publisher (publisher_id, publisher_name, website, contact_email) VALUES
-(1, 'HarperCollins', 'https://www.harpercollins.com', 'contact@harpercollins.com'),
-(2, 'Signet Classics', 'https://www.penguinrandomhouse.com', 'classics@penguinrandomhouse.com'),
-(3, 'Scribner', 'https://www.simonandschuster.com', 'scribner@simonandschuster.com'),
-(4, 'Harper Perennial', 'https://www.harpercollins.com', 'perennial@harpercollins.com'),
-(5, 'HarperOne', 'https://www.harpercollins.com', 'one@harpercollins.com'),
-(6, 'CreateSpace', 'https://www.createspace.com', 'support@createspace.com'),
-(7, 'Houghton Mifflin Harcourt', 'https://www.hmhco.com', 'trade@hmhco.com'),
-(8, 'Penguin Classics', 'https://www.penguinrandomhouse.com', 'classics@penguinrandomhouse.com'),
-(9, 'Little, Brown and Company', 'https://www.littlebrown.com', 'info@littlebrown.com'),
-(10, 'Scholastic', 'https://www.scholastic.com', 'contact@scholastic.com'),
-(7, 'Houghton Mifflin Harcourt', 'https://www.harpercollins.com', 'perennial@harpercollins.com'),
-(1, 'HarperColins', 'https://www.harpercollins.com', 'contact@harpercollins.com')
-(10, 'Scholastic', 'https://www.scholastic.com', 'contact@scholastic.com')
-(4, 'Harper Perennial', 'https://www.harpercollins.com', 'perennial@harpercollins.com')
-(8, 'Penguin Classics', 'https://www.penguinrandomhouse.com', 'classics@penguinrandomhouse.com')
+INSERT INTO Publisher (publisher_name, website, contact_email) VALUES
+('HarperCollins', 'https://www.harpercollins.com', 'contact@harpercollins.com'),
+('Signet Classics', 'https://www.penguinrandomhouse.com', 'classics@penguinrandomhouse.com'),
+('Scribner', 'https://www.simonandschuster.com', 'scribner@simonandschuster.com'),
+('Harper Perennial', 'https://www.harpercollins.com', 'perennial@harpercollins.com'),
+('HarperOne', 'https://www.harpercollins.com', 'one@harpercollins.com'),
+('CreateSpace', 'https://www.createspace.com', 'support@createspace.com'),
+('Houghton Mifflin Harcourt', 'https://www.hmhco.com', 'trade@hmhco.com'),
+('Penguin Classics', 'https://www.penguinrandomhouse.com', 'classics@penguinrandomhouse.com'),
+('Little, Brown and Company', 'https://www.littlebrown.com', 'info@littlebrown.com'),
+('Scholastic', 'https://www.scholastic.com', 'contact@scholastic.com'),
 
 /* Schema table Details */
 -- This schema now fully supports:
@@ -152,22 +152,22 @@ CREATE TABLE Customer (
 );
 
 /* -- Insert 15 Sample Customers */
-INSERT INTO Customer (customer_id, first_name, last_name, email, phone_number, created_at) VALUES
-(1, 'Rita', 'Kellory', 'kellsrita@gmail.com', '+1 (212) 555-0198', '2018-05-28', '12:09'),
-(2, 'Logan', 'Emmett', 'loganemmett.lei@gmail.com', '+44 20 7946 0958', '2017-08-08' '16:43'),
-(3, 'Esther', 'Henry', 'henrycious@yahoo,com', '+233 24 555 1234', '2019-02-16', '13:23'),
-(4, 'Theresa', 'Brian', 'tbrian222@gmail.com', '+61 2 5550 4321', '2018-04-22', '11:28'),
-(5, 'Susan', 'Storm', 'stormsusan@yahoo.com', '+65 6221 5555', '2017-12-02', '15:41',),
-(6, 'Raphael', 'Meyer', 'raphmeyerr@gmail.com', '+49 30 55567890', '2016-03-21', '17:50'),
-(7, 'Paul', 'Steven', 'stevepaul@yahoo.com', '44 161 555 0163', '2019-09-27', '11:00'),
-(8, 'Brody', 'Taylor', 'taybrody@gmail.com', '+61 3 9555 6789', '2017-10-02', '14:21'),
-(9, 'Frank', 'Thompson', 'thompsonf@gmail.com', '+1 (310) 555-0264', '2016-08-31', '16:34'),
-(10, 'Virginia', 'Darcy', 'darcyv.rivermile@gmail.com', '+49 89 55543210', '2019-06-22', '14:33'),
-(11 'Aretha' 'Morris', 'aretham099@gmail.com', '+65 9123 4567', '2018-09-08', '17:21'),
-(12, 'William', 'Asare', 'williamasare@gmail.com', '233 30 222 5678', '2017-03-16', '14:09'),
-(13, 'Dominic' 'Isaiah', 'isaiahdom91@gmail.com', +'1 (786) 555-0432', '2016-11-15', '12:56'),
-(14, 'Katherine', 'Mulman', 'mulmankathy@yahoo.com', '+44 131 555 0128', '2018-07-14', '18:12')
-(15, 'Tristan' 'Rhodes', 'rhodestris@yahoo.com', '+61 4 5211 9876', '2018-04-24', '11:56');
+INSERT INTO Customer (first_name, last_name, email, phone_number, created_at) VALUES
+('Rita', 'Kellory', 'kellsrita@gmail.com', '+1 (212) 555-0198', '2018-05-28 12:09'),
+('Logan', 'Emmett', 'loganemmett.lei@gmail.com', '+44 20 7946 0958', '2017-08-08 16:43'),
+('Esther', 'Henry', 'henrycious@yahoo,com', '+233 24 555 1234', '2019-02-16 13:23'),
+('Theresa', 'Brian', 'tbrian222@gmail.com', '+61 2 5550 4321', '2018-04-22 11:28'),
+('Susan', 'Storm', 'stormsusan@yahoo.com', '+65 6221 5555', '2017-12-02 15:41'),
+('Raphael', 'Meyer', 'raphmeyerr@gmail.com', '+49 30 55567890', '2016-03-21 17:50'),
+('Paul', 'Steven', 'stevepaul@yahoo.com', '44 161 555 0163', '2019-09-27 11:00'),
+('Brody', 'Taylor', 'taybrody@gmail.com', '+61 3 9555 6789', '2017-10-02 14:21'),
+('Frank', 'Thompson', 'thompsonf@gmail.com', '+1 (310) 555-0264', '2016-08-31 16:34'),
+('Virginia', 'Darcy', 'darcyv.rivermile@gmail.com', '+49 89 55543210', '2019-06-22 14:33'),
+('Aretha' 'Morris', 'aretham099@gmail.com', '+65 9123 4567', '2018-09-08 17:21'),
+('William', 'Asare', 'williamasare@gmail.com', '233 30 222 5678', '2017-03-16 14:09'),
+('Dominic' 'Isaiah', 'isaiahdom91@gmail.com', +'1 (786) 555-0432', '2016-11-15 12:56'),
+('Katherine', 'Mulman', 'mulmankathy@yahoo.com', '+44 131 555 0128', '2018-07-14 18:12')
+('Tristan' 'Rhodes', 'rhodestris@yahoo.com', '+61 4 5211 9876', '2018-04-24 11:56');
 
 
 /*-- Customer Address Table*/
@@ -299,7 +299,7 @@ CREATE TABLE Cust_order (
 /* Insert 15 Customer Orders */
 INSERT INTO Cust_order (order_id, customer_id, shipping_method_id, order_date, total_amount, order_status) VALUES
 -- Orders for Rita Kellory (USA, customer_id 1)
-(1, 1, 2, '2018-05-28 12:00:32', 150.00, 1),
+(1, 1, 2, '2018-05-28 12:09:32', 150.00, 1),
 (3, 1, 1, '2018-09-02 14:22:30', 211.99, 1),
 
 -- Orders for Logan Emmett (UK, customer_id 2)
@@ -315,11 +315,11 @@ INSERT INTO Cust_order (order_id, customer_id, shipping_method_id, order_date, t
 (3, 4, 1, '2018-11-12 10:45:34', 199.99, 3),
 
 -- Orders for Susan Storm (Singapore, customer_id 5)
-(5, 5, 3, '2017-12-02 15:14:14', 199.79, 1),
+(5, 5, 3, '2017-12-02 15:41:14', 199.79, 1),
 (4, 5, 2, '2018-01-15 14:46:54', 260.00, 1),
 
 -- Orders for Raphael Meyer (Germany, customer_id 6)
-(5, 6, 2, '2018-03-21 17:50:30', 390.00, 2),
+(5, 6, 2, '2016-03-21 17:50:30', 390.00, 2),
 
 -- Orders for Paul Steven (UK, customer_id 7)
 (3, 7, 2, '2019-09-27 11:00:45', 214.00, 3),
@@ -371,6 +371,10 @@ INSERT INTO Cust_order (order_id, customer_id, shipping_method_id, order_date, t
 -- 3 = Shipped
 -- 4 = Completed
 
+/* Order Id Description */
+-- This connotes the number of orders within that particulafr day the customer 
+-- made the purchase from our bookstore. 
+
 /*-- Order Status Table*/
 CREATE TABLE Order_status (
     order_status_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -412,9 +416,9 @@ CREATE TABLE Order_history (
 );
 
 /* Insert Order History Details */
-INSERT INTO Order_history (order_history_id, order_id, order_status_id, changed at) VALUES
+INSERT INTO Order_history (order_history_id, order_id, order_status_id, changed_at) VALUES
 -- Order 1 (Rita Kellory) - Delivered after Processing
-(2, 1, 1, '2018-05-28 12:00:32'), -- Pending
+(2, 1, 1, '2018-05-28 12:09:32'), -- Pending
 (2, 1, 2, '2018-05-28 14:39:22'), -- Processing
 (2, 1, 3, '2018-06-01 07:19:20'), -- Shipped
 (2, 1, 4, '2018-06-02 19:00:30'), -- Delivered
@@ -456,7 +460,7 @@ INSERT INTO Order_history (order_history_id, order_id, order_status_id, changed 
 (2, 4, 2, '2018-11-14 13:00:50'), -- Delivered
 
 -- Order 5 (Susan Storm) - Delivered
-(2, 5, 1, '2017-12-02 15:14:14'), -- Pending
+(2, 5, 1, '2017-12-02 15:41:14'), -- Pending
 (2, 5, 2, '2017-12-03 10:24:14'), -- Processing
 (2, 5, 3, '2017-12-05 11:59:20'), -- Shipped
 (2, 5, 4, '2017-12-05 21:04:00'), -- Delivered
@@ -468,7 +472,7 @@ INSERT INTO Order_history (order_history_id, order_id, order_status_id, changed 
 (2, 5, 4, '2018-01-19 12:56:50'), -- Delivered
 
 -- Order 6 (Raphael Meyer) - On Hold after Processing
-(1, 6, 1, '2018-03-21 17:50:30'), -- Pending on and off
+(1, 6, 1, '2016-03-21 17:50:30'), -- Pending on and off
 
 -- Order 7 (Paul Steven) - Shipped
 (2, 7, 1, '2019-09-27 11:00:45'), -- Pending
@@ -687,9 +691,9 @@ CREATE TABLE Shipping_method (
 
 /* Insert Shipping Id Details */
 INSERT INTO Shipping_method (shipping_id, method_name, cost)VALUES
-(1, 'Standard Shipping', 20.00),
-(2, 'Express Shipping', 23.00),
-(3, 'Overnight Shipping', 15.00);
+(1, 'Standard Shipping', 23.00),
+(2, 'Express Shipping', 40.00),
+(3, 'Overnight Shipping', 18.00);
 
 CREATE TABLE Logs (
     log_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -702,12 +706,12 @@ CREATE TABLE Logs (
 /* Insert Table Logs Details */
 INSERT INTO Logs (log_id, user_id, action, action_time) VALUES
 -- Customer account activities
-(1, 'Customer registered', '2018-05-28 11:42:10'),
-(2, 'Customer registered', '2017-08-08 16:25:33'),
+(1, 'Customer registered', '2018-05-27 11:42:10'),
+(2, 'Customer registered', '2017-08-07 16:25:33'),
 (3, 'Customer registered', '2019-02-16 10:30:21'),
-(4, 'Customer registered', '2018-04-22 11:15:47'),
+(4, 'Customer registered', '2018-04-20 11:15:47'),
 (5, 'Customer registered', '2017-11-25 13:40:12'),
-(6, 'Customer registered', '2018-03-20 10:20:55'),
+(6, 'Customer registered', '2016-03-20 10:20:55'),
 (7, 'Customer registered', '2019-08-19 15:35:40'),
 (8, 'Customer registered', '2017-10-01 12:10:25'),
 (9, 'Customer registered', '2016-08-18 17:45:30'),
@@ -719,27 +723,41 @@ INSERT INTO Logs (log_id, user_id, action, action_time) VALUES
 (15, 'Customer registered', '2018-03-04 10:50:39'),
 
 -- Login activities
-(1, 'User logged in', '2018-07-14 09:15:22'),
-(1, 'User logged in', '2018-11-21 14:05:33'),
-(2, 'User logged in', '2017-09-09 11:30:45'),
-(3, 'User logged in', '2019-05-04 13:25:30'),
-(3, 'User logged in', '2019-05-29 10:10:42'),
-(4, 'User logged in', '2018-06-17 15:45:55'),
-(5, 'User logged in', '2018-02-27 12:30:10'),
-(6, 'User logged in', '2018-06-19 10:15:25'),
-(7, 'User logged in', '2019-09-14 14:40:38'),
-(7, 'User logged in', '2019-10-30 11:05:50'),
-(8, 'User logged in', '2017-12-09 09:30:15'),
-(9, 'User logged in', '2016-11-24 13:15:22'),
-(10, 'User logged in', '2019-04-11 16:20:35'),
-(11, 'User logged in', '2018-11-07 10:35:48'),
-(12, 'User logged in', '2017-04-04 14:25:12'),
-(13, 'User logged in', '2016-12-14 12:10:27'),
-(14, 'User logged in', '2018-09-07 15:40:33'),
-(15, 'User logged in', '2018-05-09 10:00:45'),
+(1, 'User logged in', '2018-05-27 11:44:10'),
+(1, 'User logged in', '2018-09-02 14:05:33'),
+(2, 'User logged in', '2017-08-07 17:50:45'),
+(3, 'User logged in', '2019-02-16 11:15:30'),
+(3, 'User logged in', '2019-08-09 10:10:42'),
+(3, 'User-logged in', '2019-11-08 12:32:33'),
+(4, 'User logged in', '2018-04-20 15:45:55'),
+(4, 'User-logged in', '2018-11-05 14:56:00'),
+(5, 'User logged in', '2017-11-25 14:30:10'),
+(5, 'User logged in', '2018-01-10 12:31:11'),
+(6, 'User logged in', '2016-03-20 10:25:25'),
+(7, 'User logged in', '2019-08-19 18:40:38'),
+(7, 'User logged in', '2019-11-30 11:05:50'),
+(8, 'User logged in', '2017-10-01 19:30:15'),
+(8, 'User logged in', '2018-01-27 12:30:10'),
+(8, 'User logged in', '2018-04-27 12:20:10'),
+(9, 'User logged in', '2016-08-19 13:15:22'),
+(10, 'User logged in', '2019-02-14 16:20:35'),
+(10, 'User logged in', '2019-07-07 17:32:10'),
+(11, 'User logged in', '2018-08-16 10:35:48'),
+(11, 'User logged in', '2018-09-27 10:40:19'),
+(11, 'User logged in', '2018-10-17 18:10:20'),
+(11, 'User logged in', '2019-01-27 14:30:10'),
+(12, 'User logged in', '2017-03-14 14:25:12'),
+(13, 'User logged in', '2016-11-14 12:10:27'),
+(13, 'User logged in', '2017-02-23 11:39:10'),
+(13, 'User logged in', '2017-04-10 19:30:15'),
+(14, 'User logged in', '2018-06-27 15:40:33'),
+(14, 'User logged in', '2018-10-17 14:30:20'),
+(14, 'User logged in', '2019-01-27 02:20:10'),
+(15, 'User logged in', '2018-03-09 10:00:45'),
+(15, 'User logged in', '2018-07-27 12:10:30'),
 
 -- Order-related activities
-(1, 'User logged in', '2018-05-28 12:00:32'),
+(1, 'User logged in', '2018-05-28 12:09:32'),
 (1, 'User-logged in', '2018-09-02 14:22:30'),
 (2, 'User logged in', '2017-08-08 16:43:22'),
 (3, 'User logged in', '2019-02-16 13:23:00'),
@@ -749,7 +767,7 @@ INSERT INTO Logs (log_id, user_id, action, action_time) VALUES
 (4, 'User-logged in', '2018-11-12 10:45:34'),
 (5, 'User-logged-in', '2017-12-02 15:14:14'),
 (5, 'User-logged-in', '2018-01-15 14:46:54'),
-(6, 'User-logged-in', '2018-03-21 17:50:30'),
+(6, 'User-logged-in', '2016-03-21 17:50:30'),
 (7, 'User-logged-in', '2019-09-27 11:00:45'),
 (7, 'User-logged-in', '2019-12-01 10:00:00'),
 (8, 'User-logged-in', '2017-10-02 14:21:12'),
@@ -774,25 +792,23 @@ INSERT INTO Logs (log_id, user_id, action, action_time) VALUES
 
 -- Account update activities
 (1, 'Address updated', '2018-06-05 11:20:33'),
-(3, 'Payment method added', '2019-02-01 14:45:12'),
-(4, 'Password changed', '2018-03-25 09:30:45'),
-(5, 'Email updated', '2018-03-01 16:20:18'),
+(3, 'Payment method added', '2019-02-23 14:45:12'),
+(4, 'Password changed', '2018-05-25 09:30:45'),
+(5, 'Email updated', '2017-12-01 16:20:18'),
 (7, 'Notification preferences updated', '2019-10-01 10:15:27'),
 (9, 'Wishlist updated', '2016-07-20 13:40:55'),
-(11, 'Shipping preference updated', '2018-08-05 08:25:39'),
+(11, 'Shipping preference updated', '2018-08-25 08:25:39'),
 (13, 'Account details updated', '2016-12-10 11:35:42'),
-(15, 'Two-factor authentication enabled', '2018-08-08 09:50:15'),
+(15, 'Two-factor authentication enabled', '2018-04-08 09:50:15'),
 
 -- Customer service interactions
-(1, 'Contacted customer support', '2018-05-25 15:10:22'),
-(2, 'Return request submitted', '2017-08-10 11:45:33'),
-(6, 'Product question submitted', '2018-03-18 14:20:45'),
-(8, 'Order cancellation request', '2017-11-12 10:35:18'),
+(1, 'Contacted customer support', '2018-06-25 15:10:22'),
+(2, 'Return request submitted', '2017-09-10 11:45:33'),
+(6, 'Product question submitted', '2016-04-01 14:20:45'),
+(8, 'Order cancellation request', '2018-11-12 10:35:18'),
 (10, 'Feedback submitted', '2019-07-20 16:50:27'),
-(12, 'Complaint submitted', '2017-03-122 09:15:39'),
-(14, 'Product review submitted', '2018-05-15 13:25:12');
--- Re-enable foreign key checks for normal database operations
-SET FOREIGN_KEY_CHECKS = 1;
+(12, 'Complaint submitted', '2017-03-18 09:15:39'),
+(14, 'Product review submitted', '2018-06-30 13:25:12');
 
 /* Key Features of this Log Database Schema: */
 -- 1. User Activity Tracking: The Logs table captures various user activities, 
@@ -810,7 +826,4 @@ SET FOREIGN_KEY_CHECKS = 1;
 -- 9. Timestamps reflect local time zones for each customer, activity frequency matches cultural shopping patterns.
 -- 10. The schema is designed to be scalable, allowing for the addition of new users and activities as needed.
 -- 11. The schema can be easily extended to include additional user activities or features in the future.
-
-
-
 
